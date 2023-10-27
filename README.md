@@ -7,3 +7,11 @@ Flask version of Plutonication
 pip install pipreqs
 pipreqs . --force
 ```
+
+# Docker
+
+```
+docker build --tag plutonication .
+
+docker run plutonication
+```
