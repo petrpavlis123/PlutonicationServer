@@ -13,7 +13,7 @@ def message(data):
     join_room(room)
     print("new room: " + str(room))
     print('received message: ' + d)
-    emit("Someone connected to room: " + str(room), broadcast=True)
+    emit("message", "Someone connected to room: " + str(room), broadcast=True)
 
 @socketio.on('sign_payload')
 def sign_payload(data):
