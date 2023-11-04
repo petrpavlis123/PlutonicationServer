@@ -1,5 +1,7 @@
 from .extensions import socketio
 from flask_socketio import join_room, emit
+from flask import request
+
 
 @socketio.on("connect")
 def connect():
@@ -8,7 +10,16 @@ def connect():
 
     Useful for debugging.
     """
+    print(request.remote_addr)
     emit("message", "Someone connected <3", broadcast=True)
+
+@socketio.on("disconnect")
+def disconnect():
+    """
+    Event handler that is fired whenever someone disconnects.
+    """
+    print("Disconnected")
+    emit("disconnect", "Someone disconnected :(", broadcast=True)
 
 @socketio.on("create_room")
 def create_room(data):
