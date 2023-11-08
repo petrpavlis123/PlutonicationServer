@@ -1,5 +1,0 @@
-"signed_payload" event -> "payload_signature"
-
-"signature" event -> "raw_signature"
-
-"receivepubkey" event -> "pubkey"
