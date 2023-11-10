@@ -38,12 +38,26 @@ def disconnect():
 @limit_socketio()
 def create_room(data):
     """
-    Creates a new websocket room.
+    Creates a new websocket room. Intended to be used by dApps.
 
     Docs: https://socket.io/docs/v3/rooms/
     """
     room = data["Room"]
     join_room(room)
+
+
+@socketio.on("pubkey")
+@limit_socketio()
+def pubkey(data):
+    """
+    The first event emitted by wallet.
+
+    One of the side-effects is joining a given room.
+    Meaning that the wallet does not need to emit "create_room" anymore
+    """
+    room = data["Room"]
+    join_room(room)
+    emit("pubkey", str(data["Data"]), room=room)
 
 
 @socketio.on("sign_payload")
@@ -52,7 +66,7 @@ def sign_payload(data):
     """
     Event handler used by dApps. Used when requesting signature from wallet.
 
-    You can expect that the wallet will emit either "payload_signature" event or "payload_signature_rejected" event
+    You can expect the wallet to emit either "payload_signature" event or "payload_signature_rejected" event.
     """
     room = data["Room"]
     emit("sign_payload", data["Data"], room=room)
@@ -64,7 +78,7 @@ def sign_raw(data):
     """
     Event handler used by dApps. Used when requesting signature from wallet.
 
-    You can expect that the wallet will emit either "raw_signature" event or "raw_signature_rejected" event
+    You can expect the wallet to emit either "raw_signature" event or "raw_signature_rejected" event.
     """
     room = data["Room"]
     emit("sign_raw", data["Data"], room=room)
@@ -108,16 +122,3 @@ def raw_signature_rejected(data):
     """
     room = data["Room"]
     emit("raw_signature_rejected", data["Data"], room=room)
-
-
-@socketio.on("pubkey")
-@limit_socketio()
-def pubkey(data):
-    """
-    The first event emitted by wallet.
-
-    One of the side-effects is joining a given room.
-    """
-    room = data["Room"]
-    join_room(room)
-    emit("pubkey", str(data["Data"]), room=room)

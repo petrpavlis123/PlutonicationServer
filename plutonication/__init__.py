@@ -1,10 +1,9 @@
 from flask import Flask
 from .events import socketio
 from .extensions import cache
+from .router import app
 
 def create_app():
-    app = Flask(__name__)
-
     # Config here
     app.config.from_mapping({
         "DEBUG": False, 
