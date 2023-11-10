@@ -11,7 +11,11 @@ def create_app():
         "CACHE_DEFAULT_TIMEOUT": 1  # Flask-Caching related config
     })
 
-    socketio.init_app(app, cors_allowed_origins="*")
+    socketio.init_app(
+        app,
+        cors_allowed_origins="*",
+        max_http_buffer_size=10_000 # 10 KB
+    )
 
     cache.init_app(app)
 
