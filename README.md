@@ -1,14 +1,27 @@
 # PlutonicationServer
-Flask version of Plutonication
 
-# Automatically generate requirements.txt
+- Flask version of Plutonication Server.
+
+Used for reliable connection between dApps and Wallets.
+
+Passes payloads between Wallets and dApps.
+
+# Low-level docs
+
+In case you were interested in making your own Plutonication clients, consider reading these docs: https://plutonication-acnha.ondigitalocean.app/docs.
+
+# Running locally
 
 ```
-pip install pipreqs
-pipreqs . --force
+# use pip3 on MacOS and Linux
+pip install -r requirements.txt
+
+gunicorn -w 1 --threads 100 main:app
 ```
 
 # Docker
+
+You can also dockerize it with these commands:
 
 ```
 docker build --tag plutonication .
