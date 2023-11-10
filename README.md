@@ -10,6 +10,12 @@ Passes payloads between Wallets and dApps.
 
 In case you were interested in making your own Plutonication clients, consider reading these docs: https://plutonication-acnha.ondigitalocean.app/docs.
 
+# In code docs
+
+In code docs for each method are included.
+
+<img width="760" alt="Screenshot 2023-11-10 at 22 34 23" src="https://github.com/RostislavLitovkin/PlutonicationServer/assets/77352013/0489922d-b27b-4a19-98c7-4a3e8af1a731">
+
 # Running locally
 
 ```
