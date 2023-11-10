@@ -235,7 +235,7 @@ socket.on("payload_signature_rejected", () => {
                 <pre>
                     <code class="js">
 socket.emit("sign_raw", {
-    Data: payloadJson, // SignerPayloadRaw type
+    Data: rawMessage, // SignerPayloadRaw type
     Room: accessCredentials.key
 })
                     </code>
