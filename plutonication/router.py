@@ -13,7 +13,7 @@ def docs_page():
 
 
 @app.route("/digital_ocean_deploy_guide")
-def deploy_page():
+def digital_ocean_deploy_page():
     return render_template("digital_ocean_deployment_page.html")
 
 
