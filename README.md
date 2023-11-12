@@ -35,16 +35,25 @@ docker build --tag plutonication .
 docker run plutonication
 ```
 
-# Stress testing
+# Unit testing
 
-Tests the `limit_socketio` capabilities.
+- tested on Node v16.17.1
 
-- uses Node v16.17.1
-
+To run unit tests and stresstests, run:
 ```
-cd stresstests
+cd tests
 
 npm i
 
-node index.js
+npx playwright test
+```
+
+To run just unit tests, run:
+```
+npx playwright test events.spec.js
+```
+
+To run just stress tests, run:
+```
+npx playwright test stresstest.spec.js
 ```

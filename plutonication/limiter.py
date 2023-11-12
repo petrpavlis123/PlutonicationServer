@@ -6,7 +6,7 @@ from .extensions import cache
 
 def limit_socketio(
     key: str = 'socketio',
-    allowance: int = 10 # max 10 requests per 1 second
+    allowance: int = 30 # max 30 requests per 1 second
 ) -> Callable:
     """
     Rate-limiter for Socket.IO event handlers.

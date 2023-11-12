@@ -1,14 +1,16 @@
 {
-  "name": "stresstests",
+  "name": "tests",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
+  "keywords": [],
   "author": "",
   "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.39.0",
+    "@types/node": "^20.9.0"
+  },
   "dependencies": {
     "socket.io-client": "^4.7.2"
   }

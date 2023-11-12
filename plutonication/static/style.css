@@ -522,3 +522,15 @@ body.one-content-column-version .content thead {
 .cf:before, .cf:after { content: ""; display: block; }
 .cf:after { clear: both; }
 .ie6 .cf { zoom: 1 }
+
+/* My custom styles
+----------------------------------------------------------------------------------------*/
+
+b {
+    font-weight: 900;
+    color: white;
+}
+
+img {
+    margin-bottom: 30px;
+}
