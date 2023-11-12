@@ -39,8 +39,21 @@ docker run plutonication
 
 - tested on Node v16.17.1
 
+To run unit tests and stresstests, run:
 ```
 cd tests
 
+npm i
+
 npx playwright test
+```
+
+To run just unit tests, run:
+```
+npx playwright test events.spec.js
+```
+
+To run just stress tests, run:
+```
+npx playwright test stresstest.spec.js
 ```
