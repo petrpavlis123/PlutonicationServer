@@ -1,6 +1,5 @@
 import { test, expect } from '@playwright/test'
 import io from 'socket.io-client'
-import { parseCustomJSON } from './helpers'
 
 let dAppSocket
 let walletSocket
