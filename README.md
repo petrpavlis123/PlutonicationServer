@@ -52,6 +52,8 @@ npm i
 ```
 
 ## Run all tests
+Before running the tests, make sure that you have the Plutonication Server running locally.
+
 ```
 npx playwright test
 ```
@@ -61,11 +63,15 @@ Running all tests runs the limiter test that tries to overwhelm the server, whic
 Make sure to restart the Plutonication server to remove the ban without waiting 1 hour.
 
 ## Run unit tests
+Before running unit tests, make sure that you have the Plutonication Server running locally.
+
 ```
 npx playwright test events.spec.js
 ```
 
 ## Run limiter test
+Before running the limitern test, make sure that you have the Plutonication Server running locally.
+
 ```
 npx playwright test limiter.spec.js
 ```
