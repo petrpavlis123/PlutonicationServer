@@ -36,17 +36,17 @@ module.exports = defineConfig({
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
     },
-/*
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
 
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
-*/
+    //{
+    //  name: 'firefox',
+    //  use: { ...devices['Desktop Firefox'] },
+    //},
+
+    //{
+    //  name: 'webkit',
+    //  use: { ...devices['Desktop Safari'] },
+    //},
+
     /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',
@@ -63,7 +63,7 @@ module.exports = defineConfig({
     //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
     // },
     // {
-    //   name: 'Google Chrome',
+    // name: 'Google Chrome',
     //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
     // },
   ],

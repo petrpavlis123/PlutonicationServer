@@ -1,4 +1,4 @@
-# PlutonicationServer
+# Plutonication Server
 
 - Flask version of Plutonication Server.
 
@@ -18,15 +18,18 @@ In code docs for each method are included.
 
 # Running locally
 
+## Installation
 ```
 # use pip3 on MacOS and Linux
 pip install -r requirements.txt
+```
 
+## Start local plutonication server
+```
 gunicorn -w 1 --threads 100 main:app
 ```
 
 # Docker
-
 You can also dockerize it with these commands:
 
 ```
@@ -35,25 +38,38 @@ docker build --tag plutonication .
 docker run plutonication
 ```
 
-# Unit testing
+# Testing
+The following tests have been tested using Node v16.17.1
 
-- tested on Node v16.17.1
-
-To run unit tests and stresstests, run:
+Tests are located in the `tests` directory.
 ```
 cd tests
+```
 
+## Installation
+```
 npm i
+```
 
+## Run all tests
+```
 npx playwright test
 ```
 
-To run just unit tests, run:
+Running all tests runs the limiter test that tries to overwhelm the server, which results in banning the client for 1 hours.
+
+Make sure to restart the Plutonication server to remove the ban without waiting 1 hour.
+
+## Run unit tests
 ```
 npx playwright test events.spec.js
 ```
 
-To run just stress tests, run:
+## Run limiter test
 ```
-npx playwright test stresstest.spec.js
+npx playwright test limiter.spec.js
 ```
+
+Running the limiter test tries to overwhelm the server, which should result in banning the client for 1 hours.
+
+Make sure to restart the Plutonication server to remove the ban without waiting 1 hour.

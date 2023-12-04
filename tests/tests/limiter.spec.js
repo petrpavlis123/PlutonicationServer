@@ -35,7 +35,7 @@ test.describe("stress tests", () => {
       })
     })
 
-    // Overwhelm the limiter by calling it multiple times in quick succesion.
+    // Overwhelm the limiter by calling it multiple times in quick succession.
     for (let i = 0; i < 50; i++) {
       socket.emit("ping", i)
       await new Promise(resolve => setTimeout(resolve, 10))
