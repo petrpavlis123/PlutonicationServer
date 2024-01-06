@@ -8,8 +8,7 @@ def main_page():
     return render_template("main_page.html")
 
 
-@app.route("/docs/server")
-@app.route("/docs/server/flask")
+@app.route("/docs/flask-server")
 def flask_server_docs_page():
     return render_template("flask_server_docs_page.html")
 
