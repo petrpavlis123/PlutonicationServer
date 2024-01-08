@@ -18,6 +18,11 @@ def plutonication_javascript_page():
     return render_template("plutonication_javascript_page.html")
 
 
+@app.route("/docs/react-example")
+def plutonication_react_example_page():
+    return render_template("plutonication_react_example_page.html")
+
+
 @app.route("/docs/csharp")
 def plutonication_csharp_page():
     return render_template("plutonication_csharp_page.html")
