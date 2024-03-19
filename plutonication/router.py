@@ -41,7 +41,8 @@ def digital_ocean_deployment_page():
 def get_plutowallet_latest_version():
     return {
         "message": "",
-        "version": "1.9",
+        "versionString": "1.10",
+        "version": 11,
     }
 
 # Galaxy Logic Game part
