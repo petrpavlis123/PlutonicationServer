@@ -35,3 +35,16 @@ def plutonication_csharp_page():
 def digital_ocean_deployment_page():
     return render_template("digital_ocean_deployment_page.html")
 
+
+# Pluto wallet part
+@app.route("/plutowallet/latest-version")
+def get_plutowallet_latest_version():
+    return {
+        "message": "",
+        "version": "1.9",
+    }
+
+# Galaxy Logic Game part
+#@app.route("/glg/save-score")
+#def glg_save_score():
+
