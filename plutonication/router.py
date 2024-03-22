@@ -1,5 +1,7 @@
-from flask import render_template
+from flask import render_template, request
 from .extensions import app
+from .authentication import auth
+import os
 
 
 @app.route("/")
@@ -45,7 +47,51 @@ def get_plutowallet_latest_version():
         "version": 11,
     }
 
+
 # Galaxy Logic Game part
-#@app.route("/glg/save-score")
-#def glg_save_score():
+@app.route("/glg/validate-game", methods=["POST"])
+def validate_game():
+    file = open("games.txt", "a")
+
+    file.write(str(request.data))
+    file.write(",\n")
+
+    file.close()
+
+    return "Ok"
+
+
+@app.route("/glg/get-validated-games/<password>")
+def get_validated_games(password):
+    if not auth(password):
+        return "Bad password"
+
+    file_name = "games.txt"
+
+    if not os.path.exists(file_name):
+        return "No games registered"
+    
+    file = open(file_name, "r")
+    
+    validatedGames = file.read()
+
+    file.close()
+
+    return validatedGames
+
+
+@app.route("/glg/delete-validated-games/<password>")
+def delete_validated_games(password):
+    if not auth(password):
+        return "Bad password"
+
+    # Specify the file name
+    file_name = "games.txt"
+
+    # Check if the file exists to avoid an error
+    if os.path.exists(file_name):
+        os.remove(file_name)
+        return "Removed successfully"
+    
+    return "File did not exist"
 
