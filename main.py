@@ -1,6 +1,8 @@
 from plutonication import create_app, socketio
+from flask_cors import CORS
 
 app = create_app()
+CORS(app)
 
 # main method
 if __name__ == "__main__":
