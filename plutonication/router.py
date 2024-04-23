@@ -95,3 +95,24 @@ def delete_validated_games(password):
     
     return "File did not exist"
 
+
+@app.route("/supported-wallets")
+def get_supported_wallets():
+    return [
+        {
+            "name": "PlutoWallet",
+            "icon": "https://rostislavlitovkin.pythonanywhere.com/plutowalleticonwhite",
+            "downloadAndroid": "https://play.google.com/store/apps/details?id=com.rostislavlitovkin.plutowallet",
+            "downloadIOS": None,
+            "github": "https://github.com/rostislavLitovkin/plutowallet",
+            "description": "",
+        },
+        {
+            "name": "Other test wallet",
+            "icon": "https://rostislavlitovkin.pythonanywhere.com/image",
+            "downloadAndroid": None,
+            "downloadIOS": None,
+            "github": "https://github.com/rostislavLitovkin/Nothing",
+            "description": "Test description",
+        }
+    ]
