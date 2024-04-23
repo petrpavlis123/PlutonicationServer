@@ -1,5 +1,5 @@
 from flask import render_template, request
-from .extensions import app
+from .dapp_icons import app
 from .authentication import auth
 import os
 
