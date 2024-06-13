@@ -21,12 +21,11 @@ In code docs for each method are included.
 ## Installation
 ```
 # use pip3 on MacOS and Linux
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
-
 ## Start local plutonication server
 ```
-gunicorn -w 1 --threads 100 main:app
+waitress-serve --listen=127.0.0.1:8000 main:app
 ```
 
 # Docker
