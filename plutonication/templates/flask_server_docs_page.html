@@ -68,6 +68,9 @@
                 <li class="scroll-to-link" data-target="content-on-pubkey">
                     <a>On <code class="higlighted break-word">pubkey</code></a>
                 </li>
+                <li class="scroll-to-link" data-target="content-on-dapp-connected">
+                    <a>On <code class="higlighted break-word">dapp_connected</code></a>
+                </li>
                 <li class="scroll-to-link" data-target="content-on-sign-payload">
                     <a>On <code class="higlighted break-word">sign_payload</code></a>
                 </li>
@@ -187,6 +190,24 @@ socket.on("pubkey", (pubkey /* string type */) => {
                     Meaning that the wallet does not need to emit "create_room" anymore
                 </p>
             </div>
+
+            <div class="overflow-hidden content-section" id="content-on-dapp-connected">
+                <h2>On dapp_connected</h2>
+                <pre>
+                    <code class="js">
+walletSocket.on("dapp_connected", async () => {
+    await walletSocket.emit("pubkey", { Data: pubkey, Room: room })
+})
+                    </code>
+                </pre>
+                <p>
+                    Handles edge case when dapp connects later than the wallet.
+                </p>
+                <p>
+                    Is also useful for handling multiple dApp connections simultaneously.
+                </p>
+            </div>
+
             <div class="overflow-hidden content-section" id="content-on-sign-payload">
                 <h2>On sing_payload</h2>
                 <pre>
