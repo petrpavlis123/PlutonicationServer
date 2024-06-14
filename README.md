@@ -21,7 +21,7 @@ In code docs for each method are included.
 ## Installation
 ```
 # use pip3 on MacOS and Linux
-pip3 install -r requirements.txt
+pip install -r requirements.txt
 ```
 ## Start local plutonication server
 ```
