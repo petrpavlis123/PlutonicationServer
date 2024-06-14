@@ -101,10 +101,10 @@ test.beforeAll(async () => {
 });
 
 test.describe("events", () => {
-    test("create_room and pubkey", async () => {
+    test("connect_dapp and connect_wallet", async () => {
         const pubkey = "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY"
 
-        dAppSocket.emit("create_room", { Room: room })
+        dAppSocket.emit("connect_dapp", { Room: room })
 
         await new Promise((resolve) => {
             dAppSocket.on("pubkey", (receivedPubkey) => {
@@ -113,7 +113,7 @@ test.describe("events", () => {
                 resolve()
             })
 
-            walletSocket.emit("pubkey", { Data: pubkey, Room: room })
+            walletSocket.emit("connect_wallet", { Data: pubkey, Room: room })
         })
     })
 

@@ -62,8 +62,11 @@
                 <li class="scroll-to-link" data-target="content-on-connect">
                     <a>On <code class="higlighted break-word">connect</code></a>
                 </li>
-                <li class="scroll-to-link" data-target="content-on-create-room">
-                    <a>On <code class="higlighted break-word">create_room</code></a>
+                <li class="scroll-to-link" data-target="content-on-connect-dapp">
+                    <a>On <code class="higlighted break-word">connect_dapp</code></a>
+                </li>
+                <li class="scroll-to-link" data-target="content-on-connect-wallet">
+                    <a><code class="higlighted break-word">connect_wallet</code></a>
                 </li>
                 <li class="scroll-to-link" data-target="content-on-pubkey">
                     <a>On <code class="higlighted break-word">pubkey</code></a>
@@ -156,20 +159,45 @@ await new Promise((resolve) => {
                     successfully to the server.
                 </p>
             </div>
-            <div class="overflow-hidden content-section" id="content-on-create-room">
-                <h2>On create_room</h2>
+            <div class="overflow-hidden content-section" id="content-on-connect-dapp">
+                <h2>On connect_dapp</h2>
                 <pre>
                     <code class="js">
-socket.emit("create_room", {
+await socket.emit("connect_dapp", {
     Room: accessCredentials.key
 });
                     </code>
                 </pre>
                 <p>
-                    Creates a new websocket room. Intended to be used by dApps.
+                    The first event emitted by dApp.
                 </p>
                 <p>
-                    Docs: <a>https://socket.io/docs/v3/rooms/</a>
+                    Joins the given room.
+                </p>
+                <p>
+                    Learn more about the concept of rooms: <a>https://socket.io/docs/v3/rooms/</a>
+                </p>
+            </div>
+
+            <div class="overflow-hidden content-section" id="content-on-connect-wallet">
+                <h2>connect_wallet</h2>
+                <pre>
+                    <code class="js">
+await walletSocket.emit("connect_wallet", {
+    Data: pubkey,
+    Room: accessCredentials.key,
+})
+                    </code>
+                </pre>
+                <p>
+                    The first event emitted by wallet.
+                </p>
+                <p>
+                    Joins the given room.
+                    Submits the pubkey/address to all other clients connected in the same room.
+                </p>
+                <p>
+                    Learn more about the concept of rooms: <a>https://socket.io/docs/v3/rooms/</a>
                 </p>
             </div>
 
@@ -183,11 +211,10 @@ socket.on("pubkey", (pubkey /* string type */) => {
                     </code>
                 </pre>
                 <p>
-                    The first event emitted by wallet.
+                    This event handler confirms that the wallet has successfully connected.
                 </p>
                 <p>
-                    One of the side-effects is joining a given room.
-                    Meaning that the wallet does not need to emit "create_room" anymore
+                    It also receives information about the connected wallet, including it's pubkey/address.
                 </p>
             </div>
 
@@ -212,7 +239,7 @@ walletSocket.on("dapp_connected", async () => {
                 <h2>On sing_payload</h2>
                 <pre>
                     <code class="js">
-socket.emit("sign_payload", {
+await socket.emit("sign_payload", {
     Data: payloadJson, // SignerPayloadJSON type
     Room: accessCredentials.key
 })
@@ -258,7 +285,7 @@ socket.on("payload_signature_rejected", () => {
                 <h2>On sign_raw</h2>
                 <pre>
                     <code class="js">
-socket.emit("sign_raw", {
+await socket.emit("sign_raw", {
     Data: rawMessage, // SignerPayloadRaw type
     Room: accessCredentials.key
 })

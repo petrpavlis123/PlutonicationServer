@@ -17,7 +17,7 @@ test.describe("connect", () => {
         walletSocket = io(endpointUrl);
 
         walletSocket.on("dapp_connected", async () => {
-            await walletSocket.emit("pubkey", { Data: pubkey, Room: room })
+            await walletSocket.emit("connect_wallet", { Data: pubkey, Room: room })
         })
 
         // Wait for the wallet socket client to connect.
@@ -47,7 +47,7 @@ test.describe("connect", () => {
 
         const pubkey = "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY"
 
-        await walletSocket.emit("pubkey", { Data: pubkey, Room: room })
+        await walletSocket.emit("connect_wallet", { Data: pubkey, Room: room })
 
         dAppSocket = io(endpointUrl)
 
@@ -89,7 +89,7 @@ test.describe("connect", () => {
                 resolve()
             })
 
-            dAppSocket.emit("create_room", { Room: room })
+            dAppSocket.emit("connect_dapp", { Room: room })
         })
     })
 });

@@ -22,7 +22,7 @@ def connect():
 
     Useful for debugging.
     """
-    emit("message", "Someone connected <3", broadcast=True)
+    return None
 
 
 @socketio.on("disconnect")
@@ -35,9 +35,9 @@ def disconnect():
         emit("disconnect", None, to=room)
 
 
-@socketio.on("create_room")
+@socketio.on("connect_dapp")
 @limit_socketio()
-def create_room(data):
+def connect_dapp(data):
     """
     Creates a new websocket room. Intended to be used by dApps.
 
@@ -48,10 +48,43 @@ def create_room(data):
     emit("dapp_connected", None, to=room)
 
 
+@socketio.on("create_room")
+@limit_socketio()
+def create_room(data):
+    """
+    DEPRECATED: Use connect_dapp instead
+
+    Creates a new websocket room. Intended to be used by dApps.
+
+    Docs: https://socket.io/docs/v3/rooms/
+    """
+    room = data["Room"]
+    join_room(room)
+    emit("dapp_connected", None, to=room)
+
+
+@socketio.on("connect_wallet")
+@limit_socketio()
+def connect_wallet(data):
+    """
+    The first event emitted by wallet.
+
+    Joins the given room.
+    Submits the pubkey/address to all other clients connected in the same room.
+
+    Learn more about the concept of rooms: https://socket.io/docs/v3/rooms/
+    """
+    room = data["Room"]
+    join_room(room)
+    emit("pubkey", str(data["Data"]), to=room)
+
+
 @socketio.on("pubkey")
 @limit_socketio()
 def pubkey(data):
     """
+    DEPRECATED: Use connect_wallet instead
+
     The first event emitted by wallet.
 
     One of the side-effects is joining a given room.
