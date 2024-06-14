@@ -86,6 +86,9 @@
                 <li class="scroll-to-link" data-target="content-on-raw-signature-rejected">
                     <a>On <code class="higlighted break-word">raw_signature_rejected</code></a>
                 </li>
+                <li class="scroll-to-link" data-target="content-on-disconnect">
+                    <a>On <code class="higlighted break-word">disconnect</code></a>
+                </li>
             </ul>
         </div>
     </div>
@@ -273,6 +276,19 @@ socket.on("raw_signature_rejected", () => {
                 </pre>
                 <p>
                     Event handler used by wallet, when wallet decides to reject the signing of given raw message.
+                </p>
+            </div>
+            <div class="overflow-hidden content-section" id="content-on-disconnect">
+                <h2>On disconnect</h2>
+                <pre>
+                    <code class="js">
+socket.on("disconnect", () => {
+    // react to the disconnection
+})
+                    </code>
+                </pre>
+                <p>
+                    Event handler that is fired whenever someone disconnects.
                 </p>
             </div>
             <br>

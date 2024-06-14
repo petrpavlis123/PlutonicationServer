@@ -1,6 +1,7 @@
 from plutonication.limiter import limit_socketio
 from .extensions import socketio
-from flask_socketio import join_room, emit
+from flask_socketio import join_room, emit, rooms
+from flask import request
 
 
 @socketio.on("ping")
@@ -30,8 +31,8 @@ def disconnect():
     """
     Event handler that is fired whenever someone disconnects.
     """
-    emit("disconnect", "Someone disconnected :(", broadcast=True)
-
+    for room in rooms(request.sid):
+        emit("disconnect", None, to=room)
 
 
 @socketio.on("create_room")
@@ -44,6 +45,7 @@ def create_room(data):
     """
     room = data["Room"]
     join_room(room)
+    emit("dapp_connected", None, to=room)
 
 
 @socketio.on("pubkey")
@@ -57,7 +59,7 @@ def pubkey(data):
     """
     room = data["Room"]
     join_room(room)
-    emit("pubkey", str(data["Data"]), room=room)
+    emit("pubkey", str(data["Data"]), to=room)
 
 
 @socketio.on("sign_payload")
@@ -69,7 +71,7 @@ def sign_payload(data):
     You can expect the wallet to emit either "payload_signature" event or "payload_signature_rejected" event.
     """
     room = data["Room"]
-    emit("sign_payload", data["Data"], room=room)
+    emit("sign_payload", data["Data"], to=room)
 
 
 @socketio.on("sign_raw")
@@ -81,7 +83,7 @@ def sign_raw(data):
     You can expect the wallet to emit either "raw_signature" event or "raw_signature_rejected" event.
     """
     room = data["Room"]
-    emit("sign_raw", data["Data"], room=room)
+    emit("sign_raw", data["Data"], to=room)
 
 
 @socketio.on("payload_signature")
@@ -91,7 +93,7 @@ def payload_signature(data):
     Event handler used by wallet, when wallet decides to sign given payload.
     """
     room = data["Room"]
-    emit("payload_signature", data["Data"], room=room)
+    emit("payload_signature", data["Data"], to=room)
 
 
 @socketio.on("payload_signature_rejected")
@@ -101,7 +103,7 @@ def payload_signature_rejected(data):
     Event handler used by wallet, when wallet decides to reject the signing of given payload.
     """
     room = data["Room"]
-    emit("payload_signature_rejected", data["Data"], room=room)
+    emit("payload_signature_rejected", data["Data"], to=room)
 
 
 @socketio.on("raw_signature")
@@ -111,7 +113,7 @@ def raw_signature(data):
     Event handler used by wallet, when wallet decides to sign given raw message.
     """
     room = data["Room"]
-    emit("raw_signature", data["Data"], room=room)
+    emit("raw_signature", data["Data"], to=room)
 
 
 @socketio.on("raw_signature_rejected")
@@ -121,4 +123,4 @@ def raw_signature_rejected(data):
     Event handler used by wallet, when wallet decides to reject the signing of given raw message.
     """
     room = data["Room"]
-    emit("raw_signature_rejected", data["Data"], room=room)
+    emit("raw_signature_rejected", data["Data"], to=room)
