@@ -78,9 +78,21 @@ test.describe("events", () => {
 
     dAppSocket.emit("connect_dapp", { Room: room })
 
+    // dAppClient waits for the pubkey
     await new Promise((resolve) => {
-      dAppSocket.on("pubkey", (receivedPubkey) => {
+      dAppSocket.on("pubkey", async (receivedPubkey) => {
         expect(receivedPubkey).toBe(pubkey)
+
+        // wallet waits for the confirmation
+        await new Promise((resolve) => {
+          walletSocket.on("confirm_dapp_connection", () => {
+            console.log("dApp confirmed connection")
+
+            resolve()
+          })
+    
+          dAppSocket.emit("confirm_dapp_connection", { Room: room })
+        })
 
         resolve()
       })

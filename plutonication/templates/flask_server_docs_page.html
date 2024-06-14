@@ -74,6 +74,9 @@
                 <li class="scroll-to-link" data-target="content-on-dapp-connected">
                     <a>On <code class="higlighted break-word">dapp_connected</code></a>
                 </li>
+                <li class="scroll-to-link" data-target="content-on-confirm-dapp-connection">
+                    <a>On <code class="higlighted break-word">confirm_dapp_connection</code></a>
+                </li>
                 <li class="scroll-to-link" data-target="content-on-sign-payload">
                     <a>On <code class="higlighted break-word">sign_payload</code></a>
                 </li>
@@ -232,6 +235,22 @@ walletSocket.on("dapp_connected", async () => {
                 </p>
                 <p>
                     Is also useful for handling multiple dApp connections simultaneously.
+                </p>
+            </div>
+
+            <div class="overflow-hidden content-section" id="content-on-confirm-dapp-connection">
+                <h2>On confirm_dapp_connection</h2>
+                <pre>
+                    <code class="js">
+walletSocket.on("confirm_dapp_connection", () => {
+    // dApp confirmed connection
+})
+
+await socket.emit("confirm_dapp_connection", { Room: room })
+                    </code>
+                </pre>
+                <p>
+                    Confirms that the dApp is connected to the server and that it has received the pubkey from the wallet.
                 </p>
             </div>
 

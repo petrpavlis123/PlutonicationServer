@@ -63,6 +63,16 @@ def create_room(data):
     emit("dapp_connected", None, to=room)
 
 
+@socketio.on("confirm_dapp_connection")
+@limit_socketio()
+def confirm_dapp_connection(data):
+    """
+    Confirms that the dApp is connected to the server and that it has received the pubkey from the wallet.
+    """
+    room = data["Room"]
+    emit("confirm_dapp_connection", None, to=room)
+
+
 @socketio.on("connect_wallet")
 @limit_socketio()
 def connect_wallet(data):
