@@ -116,3 +116,8 @@ def get_supported_wallets():
             "description": "Test description",
         }
     ]
+
+
+@app.route("/plutowallet/terms-and-conditions")
+def pluto_wallet_terms_and_conditions_page():
+    return render_template("pluto_wallet_terms_and_conditions_page.html")
